@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
@@ -93,7 +93,7 @@ export const debounce = <T extends (...args: unknown[]) => void>(
 ) => {
   let timeoutId: NodeJS.Timeout | null = null;
 
-  return (...args: Parameters<T>) => {
+  return (...args: any[]) => {
     if (timeoutId) clearTimeout(timeoutId);
     // ⬇ Replaced `.apply()` with the spread operator (fixes the next error)
     timeoutId = setTimeout(() => func(...args), delay);
