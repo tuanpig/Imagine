@@ -10,7 +10,7 @@ export interface IImage extends Document {
   secureUrl: string;             // Secure image URL (should be string, not URL)
   width?: number;                // Optional width in pixels
   height?: number;               // Optional height in pixels
-  config?: Record<string, any>;  // Optional config object
+  config?: Record<string, unknown>;  // Optional config object
   transformationUrl?: string;    // Optional transformed image URL
   aspectRatio?: string;          // Optional aspect ratio, e.g. "16:9"
   color?: string;                // Optional color data
@@ -29,11 +29,11 @@ const ImageSchema = new Schema({
     title: { type:String,  required: true },
     transformationType: { type:String, required: true },
     publicId: { type: String, required: true },
-    secureUrl: { type: URL, required: true },
+    secureUrl: { type: String, required: true },
     width: { type: Number },
     height: { type: Number },
     config: { type: Object },
-    transformationUrl: { type: URL },
+    transformationUrl: { type: String },
     aspectRatio: { type: String },
     color: { type: String },
     prompt: { type: String },

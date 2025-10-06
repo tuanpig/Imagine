@@ -4,10 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import {
   ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
 } from '@clerk/nextjs'
 
 const IBM = IBM_Plex_Sans({
