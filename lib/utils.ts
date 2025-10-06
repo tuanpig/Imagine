@@ -86,13 +86,20 @@ export function removeKeysFromQuery({
 }
 
 // DEBOUNCE
-export const debounce = (func: (...args: any[]) => void, delay: number) => {
-  let timeoutId: NodeJS.Timeout | null;
-  return (...args: any[]) => {
+// A generic debounce function that delays running `func` until after `delay` ms
+export const debounce = <T extends (...args: unknown[]) => void>(
+  func: T,
+  delay: number
+) => {
+  let timeoutId: NodeJS.Timeout | null = null;
+
+  return (...args: Parameters<T>) => {
     if (timeoutId) clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func.apply(null, args), delay);
+    // ⬇ Replaced `.apply()` with the spread operator (fixes the next error)
+    timeoutId = setTimeout(() => func(...args), delay);
   };
 };
+
 
 // GE IMAGE SIZE
 export type AspectRatioKey = keyof typeof aspectRatioOptions;
